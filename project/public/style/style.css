@@ -1,0 +1,127 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+.row{
+  margin:0;
+}
+
+a, a:hover, a:active{
+    color:inherit;
+    text-decoration: none;
+}
+
+input[type=button], button{
+  cursor: pointer;
+}
+
+div[class*=col-]{
+ /* border: 1px solid black; */
+  padding:0;
+}
+
+.adress, .logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login{
+  box-sizing: border-box;
+  padding:5px !important;
+}
+
+.login h2, .subscribe h2{
+  text-align: center;
+}
+
+
+.login form, .subscribe form{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.login form input, .subscribe form input{
+  margin-top:5px;
+}
+
+.nav{
+  margin:10px 0 10px 0;
+}
+
+.rowContent{
+  display: flex;
+  justify-content: center;
+  margin-top:10px;
+}
+
+.rowContent:last-child{
+  margin-bottom: 10px;
+}
+
+
+.rowContent div[class*=col-] .row  {
+  display: flex;
+  align-items: center;
+}
+
+.rowContent div[class*=col-] .row h2{
+  margin-left: 25px;
+
+}
+
+.rowContent div[class*=col-] p {
+  margin-top: 15px;
+}
+
+.rowContent div[class*=col-]:first-child{
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+.rowContent div[class*=table] a{
+  cursor: pointer;
+}
+
+.rowContent div[class*=table]:first-child{
+  margin-right: 50px;
+  margin-bottom: 0px;
+}
+
+.tableRow{
+  margin-right: 50px;
+}
+
+.logoCompany{
+    max-width: 150px;
+    max-height: 75px;
+}
+
+.pagination{
+  margin:10px 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul{
+  list-style: none;
+
+}
+
+.pagination ul li{
+  border: 1px solid black;
+  margin-right: 10px;
+}
+
+.pagination ul li a{
+  display: block;
+  padding:7px;
+}
+
+.copy p{
+  margin: 0 auto;
+}

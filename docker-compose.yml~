@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+    nginx:
+        image: nginx:latest
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - ./hosts:/etc/nginx/conf.d
+          - ./www:/var/www
+          - ./logs:/var/log/nginx
+        links:
+          - php
+    php:
+        build: ./images/php
+        links:
+         - db
+        volumes:
+          - ./www:/var/www
+    db:
+        image: mariadb
+        restart: always
+        environment:
+         MYSQL_ROOT_PASSWORD: 123456
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+         - 6080:8080
+
+    composer:
+       image: composer:1.7
+       volumes:
+        - /web:/var/www/html
+       working_dir: /var/www/html
