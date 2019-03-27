@@ -8,7 +8,7 @@ session_start();
 
 
 // 2. Подключение файлов системы
-  define('ROOT', dirname(__FILE__));
+  define('ROOT', require_once '../config/ROOT.php');
   require_once(ROOT . '/components/Router.php');
 // 3. Установка соединения с БД
   require_once(ROOT . '/components/Autoload.php');
