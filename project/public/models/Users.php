@@ -7,7 +7,7 @@ class Users
         $count = intval($count);
         $page = intval($page);
         $offset = ($page - 1) * $count;
-        $sql = "SELECT firms_users.id_firm, firms_users.id_user, firms.firm_name, "
+        $sql = "SELECT firms_users.id_firm, firms_users.id_user, firms.firm_name, users.data_start_job AS date, "
                 ." users.first_name, users.Last_name, birthd_day FROM `firms_users` INNER JOIN `firms` "
                 . " ON (firms.id_firm = firms_users.id_firm) INNER JOIN `users` ON (users.id_user = firms_users.id_user)"
                 ." LIMIT {$count} OFFSET {$offset} ";

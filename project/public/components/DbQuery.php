@@ -114,7 +114,7 @@ class DbQuery
                     if($forInsert){
                         $result = "( ";
                         for ($i = 0; $i <= $count; $i++){
-                            if($i == $count - 1){
+                            if($i == $count){
                                 $result .= " " . $arrKey[$i];
                             }else{
                                 $result .= " " . $arrKey[$i] . ",";

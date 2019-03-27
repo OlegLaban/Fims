@@ -9,7 +9,7 @@
 class Other
 {
 
-    public static function getAge($unixTime)
+    public static function getYear($unixTime)
     {
         return date("d.M.Y",   $unixTime);
     }
