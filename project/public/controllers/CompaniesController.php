@@ -13,6 +13,7 @@ class CompaniesController
         $arr = Companies::getCompniesWithPage($page);
         $count = Companies::countCompamies();
         $pagination = new Pagination($count['count'], $page, Config::COUNT_NOTES_ON_PAGE, 'p-');
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
         require_once ROOT  . '/views/companies/index.php';
         return true;
     }
