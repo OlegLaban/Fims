@@ -22,9 +22,9 @@ class DbQuery
                 // В данную переменную мы помещаем подготовленные функцией prepareStrQuery массив placeholders для sql запроса.
                 $placeholders = trim(self::prepareStrQuery(array_keys($where),true));
                 // В эту переменную мы кладем результируюзий sql запрос с placeholders.
-                $resultWhereStr = self::preStrQueForWhereOrIns(array_keys($where), explode(" ", $placeholders), true);
+                $resultWhereStr = self::preStrQueForWhereOrIns(array_keys($where), $placeholders, true);
                 //В данную переменную мы кладем массив типа {":placeholders" => value} который мы передадим функции execute.
-                $resultArrExec = self::preStrQueForWhereOrIns(explode(" ", $placeholders), array_values($where));
+                $resultArrExec = self::preStrQueForWhereOrIns($placeholders, array_values($where));
                // Проверяем были ли переданы нам столбцы елси же нет то берем все, что есть в таблице.
                 if($cols == null){
                     //Подготавливаем запрос
@@ -168,7 +168,6 @@ class DbQuery
        }
        //Проверяем совпадает ли  количество столбцов с количеством placeholders
         $arrCols = explode(" ", $key);
-       if(count($arrCols) == count($value)){
                 //Находим колличество значений в массивах
                 $count = count($arrCols) - 1;
                 //Переходим к созданию строки или массива в зависимости от "bool".
@@ -189,9 +188,6 @@ class DbQuery
                     }
                 }
             return $result;
-        }else{
-            die("Длина массивов не одинаковая!");
-        }
     }
 
 }
