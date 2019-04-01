@@ -16,7 +16,7 @@ class Users
 
     }
 
-    public static function getFilterUsersAndFirmsWithPage($page, $data, $count = Config::COUNT_NOTES_ON_PAGE)
+    public static function getFilterUserWithPage($page, $data, $count = Config::COUNT_NOTES_ON_PAGE)
     {
         $count = intval($count);
         $page = intval($page);
@@ -47,7 +47,7 @@ class Users
         $sql = "SELECT firms_users.id_firm, firms_users.id_user, firms.firm_name, users.data_start_job AS date, "
             ." users.first_name, users.Last_name, users.birthd_day FROM `firms_users` INNER JOIN `firms` "
             . " ON (firms.id_firm = firms_users.id_firm) INNER JOIN `users` ON (users.id_user = firms_users.id_user)"
-            . "LIMIT {$count}";
+            . " ORDER BY `id_user` DESC LIMIT {$count}";
         return DbQuery::otherOuery($sql, true);
     }
 

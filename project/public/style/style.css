@@ -180,6 +180,22 @@ form  input{
   border:1px solid black;
 }
 
+
+
+#outputOt, #chisloOt{
+  display: inline-block;
+}
+
+#outputDo, #chisloDo{
+  display: inline-block;
+}
+
+
+#outputOt, #outputDo{
+  min-width: 50px;
+  text-align: right;
+}
+
 .copy p{
   margin: 0 auto;
 }

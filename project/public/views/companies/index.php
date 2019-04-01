@@ -1,7 +1,31 @@
 <?php require_once ROOT . '/include/header.php';?>
     <div class="row content">
     <div class="col-3">
-        <img src="../img/banner.png" alt="">
+        <div class="filter">
+            <h2 class="opis">Фильтр:</h2>
+            <form action="/companies/" method="POST">
+                <p>Название по алфавиту:</p>
+                <p>От: <input type="text" name="filterFirm[literaOt]" pattern="[A-Za-zА-Яа-яЁё]"
+                              value="<?php echo $literaOt; ?>">
+                </p>
+                <p>До: <input type="text" name="filterFirm[literaDo]" pattern="[A-Za-zА-Яа-яЁё]"
+                              value="<?php echo $literaDo; ?>">
+                </p>
+                <p class="opis">Колличество сотрудников</p>
+                <div class="count">
+                    <p>От: <input type="range" min="0" max="100" id="chisloOt" name="filterFirm[chisloOt]" pattern="[A-Za-zА-Яа-яЁё]"
+                                  value="<?php echo $chisloOt;?>">
+                        <span id="outputOt"><?php echo $chisloOt;?></span>/100
+                    </p>
+                    <p>До: <input type="range" min="0" max="100" id="chisloDo" name="filterFirm[chisloDo]" pattern="[A-Za-zА-Яа-яЁё]"
+                                  value="<?php echo $chisloDo;?>">
+                        <span id="outputDo"><?php echo $chisloDo;?></span>/100
+                    </p>
+                </div>
+                <input type="submit" name="subFilterFirm" value="Отправить">
+                <input type="submit" name="resetFilterFirm" value="Сброс">
+            </form>
+        </div>
     </div>
     <div class="col-9 blockContent">
 

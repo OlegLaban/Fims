@@ -23,7 +23,7 @@ class UsersController
             }else{
                 $data = $_SESSION['dataFilterUser'];
             }
-            $arr = Users::getFilterUsersAndFirmsWithPage($page, $data);
+            $arr = Users::getFilterUserWithPage($page, $data);
             $count = $arr['count'];
             unset($arr['count']);
         }else{

@@ -71,7 +71,7 @@ class DbQuery
                 //В данную переменную мы кладем массив типа {":placeholders" => value} который мы передадим функции execute.
                 $resultArrExec = self::preStrQueForWhereOrIns($placeholders, implode(",", array_values($where)));
                 //Подготавливаем запрос
-                $result = $db->prepare("SELECT * FROM {$table} WHERE  {$resultWhereStr} LIMIT {$count} OFFSET {$offset}");
+                $result = $db->prepare("SELECT * AS `count` FROM {$table} WHERE  {$resultWhereStr} LIMIT {$count} OFFSET {$offset}");
                 //Подставляем в строку запроса значения placeholders при помощи массива с ними.
                 $result->execute($resultArrExec);
             }else{
