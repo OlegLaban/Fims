@@ -12,6 +12,25 @@ class SiteController
     return true;
   }
 
+  public function actionAddImg()
+  {
+      $data = $_FILES;
+      $name = basename($data[0]["name"]);
+      $src = ROOT  . "/img/logoCompanies/$name";
+      echo "/img/logoCompanies/$name";
+      move_uploaded_file($data[0]['tmp_name'], $src);
+      return true;
+  }
+
+    public function actionAddImgW()
+    {
+        $data = $_FILES;
+        $name = basename($data[0]["name"]);
+        $src = ROOT  . "/img/logoWorker/$name";
+        echo "/img/logoCompanies/$name";
+        move_uploaded_file($data[0]['tmp_name'], $src);
+        return true;
+    }
 
 
 }

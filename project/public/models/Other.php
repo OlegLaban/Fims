@@ -33,4 +33,10 @@ class Other
         return date("d.M.Y",   $unixTime);
     }
 
+    public static function toUnixTime($date)
+    {
+        $a = date_parse_from_format('Y-m-d', $date);
+        return mktime(0, 0, 0, $a['month'], $a['day'], $a['year']);
+    }
+
 }

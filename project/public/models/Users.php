@@ -73,10 +73,10 @@ class Users
             if(isset($data['company'])){
                 if($key == 'company' && $count == 0){
                     $count++;
-                    $sql .= " WHERE ( `firm_name` IN (" ."'" . implode("','", $item) ."'" . ")) ";
+                    $sql .= " WHERE ( firms.id_firm IN (" ."'" . implode("','", $item) ."'" . ")) ";
                 }else if($count >= 1 && $key =='company'){
                     $count++;
-                    $sql .= "  AND (`firm_name` IN (" . "'". implode("','", $item) . "'" . ")) ";
+                    $sql .= "  AND ( firms.id_firm IN (" . "'". implode("','", $item) . "'" . ")) ";
                 }
             }
 
@@ -84,10 +84,10 @@ class Users
                 if($data['dateOt'] != '' && $key == 'dateOt'){
                     if($count == 0){
                         $count++;
-                        $sql .= " WHERE ( `birthd_day` BETWEEN " . self::toUnixTime($item) . " ";
+                        $sql .= " WHERE ( `birthd_day` BETWEEN " . Other::toUnixTime($item) . " ";
                     }else if($count >= 1){
                         $count++;
-                        $sql .= " AND (`birthd_day` BETWEEN " . self::toUnixTime($item) . " ";
+                        $sql .= " AND (`birthd_day` BETWEEN " . Other::toUnixTime($item) . " ";
                     }
 
                 }else if($data['dateOt'] == '' && $key == 'dateOt'){
@@ -100,9 +100,9 @@ class Users
                     }
                 }
                 if($data['dateDo'] != '' && $key == 'dateDo'){
-                        $sql .= " AND " . self::toUnixTime($item) . ") ";
+                        $sql .= " AND " . Other::toUnixTime($item) . ") ";
                 }else if($data['dateDo'] == '' && $key == 'dateDo'){
-                        $sql .= " AND  " . self::toUnixTime(date("Y.m.d")) . ") ";
+                        $sql .= " AND  " . Other::toUnixTime(date("Y.m.d")) . ") ";
                 }
             }
 
@@ -110,9 +110,5 @@ class Users
         return $sql;
     }
 
-    public static function toUnixTime($date)
-    {
-        $a = date_parse_from_format('Y-m-d', $date);
-        return mktime(0, 0, 0, $a['month'], $a['day'], $a['year']);
-    }
+
 }

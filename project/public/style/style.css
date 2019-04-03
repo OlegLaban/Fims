@@ -199,3 +199,8 @@ form  input{
 .copy p{
   margin: 0 auto;
 }
+
+/*Админка*/
+.AdminBlockContent{
+  margin:32px auto 32px auto;
+}

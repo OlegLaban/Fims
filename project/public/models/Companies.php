@@ -22,8 +22,8 @@ class Companies
 
     public static function getFirmsName()
     {
-        $sql = "SELECT `firm_name` FROM `firms`";
-        return  DbQuery::otherOuery($sql, true, true);
+        $sql = "SELECT `id_firm`, `firm_name` FROM `firms`";
+        return  DbQuery::otherOuery($sql, true);
     }
 
     public static function getCompniesWithPage($page, $count = Config::COUNT_NOTES_ON_PAGE)
@@ -61,10 +61,10 @@ class Companies
                 if($data['literaOt'] != '' || $data['literaDo'] != ''){
                     if($data['literaOt'] != '' && $data['literaDo'] == '' && $key == 'literaOt' && $count == 0){
                         $count++;
-                        $sql .= "( firms.firm_name BETWEEN '" . $item . "%' AND " . Other::FirstOrLastLitera($item) . "% ) ";
+                        $sql .= "( firms.firm_name BETWEEN '" . $item . "%' AND '" . Other::FirstOrLastLitera($item) . "%' ) ";
                     }else if($data['literaOt'] == '' && $data['literaDo'] != '' && $key == 'literaDo' && $count == 0){
                         $count++;
-                        $sql .= "( firms.firm_name BETWEEN '" . Other::FirstOrLastLitera($item, true) . "%' AND " . $item . "% ) ";
+                        $sql .= "( firms.firm_name BETWEEN '" . Other::FirstOrLastLitera($item, true) . "%' AND '" . $item . "%' ) ";
                     }else if($data['literaOt'] != '' && $data['literaDo'] != '' && $key == 'literaOt' && $count == 0){
                         $count++;
                         $sql .= "( firms.firm_name BETWEEN '" . $data['literaOt'] . "%' " ." AND '" . $data['literaDo'] . "%'   )";

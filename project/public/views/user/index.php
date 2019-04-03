@@ -15,9 +15,9 @@
                 <div class="radioCompanyFilter">
                     <?php foreach ($arrCompanyName as $item): ?>
                     <p><input type="checkbox" name="filter[company][]"
-                              <?php if(isset($data['company'])){if(in_array($item, $data['company'])){ echo "checked='checked'"; }} ?>
-                              value="<?php echo $item; ?>">
-                        <?php echo $item; ?>
+                              <?php if(isset($data['company'])){if(in_array($item['id_firm'], $data['company'])){ echo "checked='checked'"; }} ?>
+                              value="<?php echo $item['id_firm']; ?>">
+                        <?php echo $item['firm_name']; ?>
                     </p>
                     <?php endforeach;?>
                 </div>
