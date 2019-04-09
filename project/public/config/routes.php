@@ -11,11 +11,12 @@ return array(
   'admin/addworker' => 'admin/addWorker',
   'admin/p-([0-9]+)' => 'admin/index/$1',
   'admin/delCompany/([0-9]+)' => 'admin/delCompany/$1',
+  'admin/delUser/([0-9]+)' => 'admin/delUser/$1',
   'admin/user/p-([0-9]+)' => 'admin/usersPage/$1',
   'admin/user' => 'admin/usersPage',
   'admin' => 'admin/index',
 
-  'site/AddImgC' => 'site/AddImgC',
+  'site/AddImgC' => 'site/AddImg',
   'site/AddImgW' => 'site/AddImgW',
   '' => 'site/index'
 

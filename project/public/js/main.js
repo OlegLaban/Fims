@@ -4,12 +4,12 @@ window.onload = function () {
         $(this).next().html($(this).val());
    });
 
-   $('#logoCompany').on("change", function(){
+   $('#logoCompanyOrWorker').on("change", function(){
 
-       var $i = $('#logoCompany'), input = $i[0];
+       var $i = $('#logoCompanyOrWorker'), input = $i[0];
        if(input.files){
            var file = input.files, src, formData = new FormData();
-           var src = $('#logoCompany').attr('data-src');
+           var src = $('#logoCompanyOrWorker').attr('data-src');
            if(file.length != 0) {
                console.log(file)
                 for(var files in file){
@@ -17,8 +17,10 @@ window.onload = function () {
                 }
 
            }
+           var tr  = "/" + $('#logo').val();
+           console.log(tr);
           $.ajax({
-               url: "/site/addImg/",
+               url: tr,
                type: "POST",
                data: formData,
                dataType: "html",
@@ -39,7 +41,7 @@ window.onload = function () {
 
    });
 
-    $('#logoWorker').on("change", function(){
+   /*$('#logoWorker').on("change", function(){
 
         var $i = $('#logoWorker'), input = $i[0];
         if(input.files){
@@ -53,7 +55,6 @@ window.onload = function () {
 
             }
             var url = "/" + $("#logo").val() + "/";
-            console.log(url);
             $.ajax({
                 url: "/site/AddImgW/",
                 type: "POST",
@@ -74,5 +75,5 @@ window.onload = function () {
 
         }
 
-    });
+    });*/
 }

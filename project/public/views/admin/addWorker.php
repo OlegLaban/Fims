@@ -19,7 +19,7 @@
             <span>Дата рождения:</span>
             <input type="date" name="data_start_job">
             <span class="textForm">Логотип:</span>
-            <input type="file" id="logoWorker"  data-src="<?php echo $src; ?>">
+            <input type="file" id="logoCompanyOrWorker"  data-src="<?php echo $src; ?>">
             <input type="hidden" id="logo" name="logo" value="site/AddImgW">
             <img src=""  alt="logoWorker" id="imgFile">
             <select name="id_firm">

@@ -61,7 +61,7 @@
                 <div class="col-2 table"><?php echo Other::getYear($item['birthd_day']);?></div>
                 <div class="col-2 table"><?php echo $item['firm_name']; ?></div>
                 <div class="col-1 table"><a href="/admin/userRed/">Red...</a></div>
-                <div class="col-1 table"><a href="/admin/deleteUser/<?php echo $item['id_user']; ?>">Delete</a></div>
+                <div class="col-1 table"><a href="/admin/delUser/<?php echo $item['id_user']; ?>">Delete</a></div>
             </div>
         <?php endforeach; ?>
         <div class="row pagination">

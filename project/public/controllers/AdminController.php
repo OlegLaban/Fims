@@ -61,7 +61,6 @@ class AdminController
         if (isset($_SESSION['dataFilterUser'])) {
             $data = $_SESSION['dataFilterUser'];
         }
-//        var_dump($arr);
         $arrCompanyName = Companies::getFirmsName();
         $pagination = new Pagination($count, $page, Config::COUNT_NOTES_ON_PAGE, 'p-');
         $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
@@ -99,11 +98,24 @@ class AdminController
     public function actionDelCompany($id = false)
     {
         $arr = [
+            'id_firm' => (int) $id,
             'firms_users',
             'firms'
         ];
         Admin::Delete($id, $arr);
-        header("Location: /admin/");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
+
+    public function actionDelUser($id = false)
+    {
+        $arr = [
+            'id_user' => (int) $id,
+            'firms_users',
+            'users'
+
+        ];
+        Admin::Delete($id, $arr);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 
     public function testDataUpdate($data, $component)

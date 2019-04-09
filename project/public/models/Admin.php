@@ -43,16 +43,21 @@ class Admin
 
     public static function Delete($id, $table = [])
     {
-        $data = [
-            ':id_firm' => (int )$id
-        ];
+        $row = [];
+        $row[] = array_keys($table)[0];
+        $row[] = $table[reset($row)];
+        unset($table[$row[0]]);
         $sql = "
             START transaction;
-                DELETE FROM " . array_shift($table) .  " WHERE `id_firm` = :id_firm;
-                DELETE FROM " . array_shift($table) . " WHERE `id_firm` = :id_firm;
+                DELETE FROM " . array_shift($table) .  " WHERE `" . reset($row) ."` = :" . reset($row) .";
+                DELETE FROM " . array_shift($table) . " WHERE `" . reset($row) ."` = :" . reset($row) .";
             COMMIT; 
         ";
-        DbQuery::otherOuery($sql, false, [], $data);
+        $row[0] = ":" . $row[0];
+        $data = [
+            $row[0] => $row[1]
+        ];
+        DbQuery::otherOuery($sql, false, $data, []);
     }
 
 }
