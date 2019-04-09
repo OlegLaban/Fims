@@ -83,7 +83,7 @@ class DbQuery
         }
     }
 
-    public static function otherOuery($sql, $isSelect = true, $arrRows = [], $exec = false)
+    public static function otherOuery($sql, $isSelect = true, $exec = false, $arrRows = [])
     {
          //Устанавливаем соединение с базой данных
         $db  = Db::getConnection();
@@ -191,9 +191,9 @@ class DbQuery
     public static function prepareDataForQuery($data)
     {
         $arr_keys = array_keys($data);
-        $cols = DbQuery::prepareStrQuery($arr_keys, true);
-        $placeholders = DbQuery::prepareStrQuery($arr_keys);
-        $resultArrExec = DbQuery::preStrQueForWhereOrIns($placeholders, array_values($data));
+        $cols = self::prepareStrQuery($arr_keys, true);
+        $placeholders = self::prepareStrQuery($arr_keys);
+        $resultArrExec = self::preStrQueForWhereOrIns($placeholders, array_values($data));
         return array(
             'cols' => $cols,
             'placeholders' => $placeholders,
@@ -204,6 +204,7 @@ class DbQuery
     public static function fetchData($exec, $arrRows = [])
     {
         $i = 0;
+        $resultArr = [];
         while($result = $exec->fetch()){
 
             if(!empty($arrRows)){

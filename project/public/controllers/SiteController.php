@@ -27,6 +27,16 @@ class SiteController
         $data = $_FILES;
         $name = basename($data[0]["name"]);
         $src = ROOT  . "/img/logoWorker/$name";
+        echo "/img/logoWorker/$name";
+        move_uploaded_file($data[0]['tmp_name'], $src);
+        return true;
+    }
+
+    public function actionAddImgC()
+    {
+        $data = $_FILES;
+        $name = basename($data[0]["name"]);
+        $src = ROOT  . "/img/logoCompanies/$name";
         echo "/img/logoCompanies/$name";
         move_uploaded_file($data[0]['tmp_name'], $src);
         return true;

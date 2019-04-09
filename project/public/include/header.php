@@ -14,7 +14,7 @@
 <body>
     <div id="wrapper">
         <div class="container">
-            <div class="row">
+            <div class="row header">
                 <div class="col-4 logo">
                     <h1>Logo</h1>
                 </div>

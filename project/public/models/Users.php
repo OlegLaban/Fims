@@ -8,7 +8,7 @@ class Users
         $page = intval($page);
         $offset = ($page - 1) * $count;
         $sql = "SELECT firms_users.id_firm, firms_users.id_user, firms.firm_name, users.data_start_job AS date, "
-                ." users.first_name, users.Last_name, birthd_day FROM `firms_users` INNER JOIN `firms` "
+                ." users.first_name, users.photo, users.Last_name, birthd_day FROM `firms_users` INNER JOIN `firms` "
                 . " ON (firms.id_firm = firms_users.id_firm) INNER JOIN `users` ON (users.id_user = firms_users.id_user)"
                 ." LIMIT {$count} OFFSET {$offset} ";
         return DbQuery::otherOuery($sql, true);
@@ -20,19 +20,22 @@ class Users
     {
         $count = intval($count);
         $page = intval($page);
+        $page = $page == 0 ? 1 : $page;
         $offset = ($page - 1) * $count;
         $sql = self::prepareStrQuerFiltUser($data);
         $countUser = self::countUsersWithFilter($sql);
+        $sql .= " ORDER BY users.Last_name ASC ";
         $sql .= " LIMIT {$count} OFFSET {$offset} ";
         $resultArr = DbQuery::otherOuery($sql, true);
-        $resultArr['count'] =   $countUser['count'];
+        $resultArr['count'] =   $countUser[0]['count'];
         return $resultArr;
     }
 
 
     public static function countUsers()
     {
-        return DbQuery::getOtherData("COUNT(`id_firm`) AS `count`", "firms_users");
+        $sql = "SELECT COUNT(`id_user`) AS `count` FROM `users`";
+        return DbQuery::otherOuery($sql);
     }
 
     public static function countUsersWithFilter($sql){
@@ -45,7 +48,7 @@ class Users
     public static function getLastAddUsers($count)
     {
         $sql = "SELECT firms_users.id_firm, firms_users.id_user, firms.firm_name, users.data_start_job AS date, "
-            ." users.first_name, users.Last_name, users.birthd_day FROM `firms_users` INNER JOIN `firms` "
+            ." users.first_name,  users.Last_name, users.birthd_day FROM `firms_users` INNER JOIN `firms` "
             . " ON (firms.id_firm = firms_users.id_firm) INNER JOIN `users` ON (users.id_user = firms_users.id_user)"
             . " ORDER BY `id_user` DESC LIMIT {$count}";
         return DbQuery::otherOuery($sql, true);
@@ -54,19 +57,27 @@ class Users
     public static function prepareStrQuerFiltUser($data)
     {
         $sql = "SELECT firms_users.id_firm, firms_users.id_user, firms.firm_name, users.data_start_job AS date, "
-            ." users.first_name, users.Last_name, users.birthd_day FROM `firms_users` INNER JOIN `firms` "
+            ." users.first_name, users.photo, users.Last_name, users.birthd_day FROM `firms_users` INNER JOIN `firms` "
             . " ON (firms.id_firm = firms_users.id_firm) INNER JOIN `users` ON (users.id_user = firms_users.id_user)";
         $count = 0;
+
+        if($data['literaOt'] != ''){
+            $litera = $data['literaOt'];
+        }else if($data['literaDo'] != ''){
+            $litera = $data['literaDo'];
+        }
         foreach ($data as $key => $item){
             if($data['literaDo'] != '' || $data['literaOt'] != ''){
                 if($key == 'literaOt' || $key == 'literaDo'){
                     $count++;
-                    if($key == 'literaOt'){
+                    if($data['literaOt'] == ''){
+                        $sql .= "WHERE (`Last_name` BETWEEN '" . Other::FirstOrLastLitera($litera, true) . "%' ";
+                    }else if($key == 'literaOt'){
                         $sql .= " WHERE (`Last_name`  BETWEEN  '" . trim($item) . "%' ";
+                    }else  if($data['literaDo'] == ''){
+                        $sql .= " AND '" .  Other::FirstOrLastLitera($litera) . "%' ) ";
                     }else if($key == 'literaDo'){
                         $sql .= " AND  '" . trim($item) . "%') ";
-                    }else if(!isset($data['literaDo'])){
-                        $sql .= " ) ";
                     }
                 }
             }

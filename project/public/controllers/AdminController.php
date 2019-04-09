@@ -4,31 +4,90 @@
 class AdminController
 {
 
-    public function actionIndex()
+    public function actionIndex($page = 1)
     {
+        $data = [];
+        if (isset($_SESSION['unsetSub'])) {
+            unset($_SESSION['unsetSub']);
+        }
+        if (isset($_POST['resetFilterFirm'])) {
+            unset($_SESSION['dataFilterFirm']);
+        }
+        if (isset($_POST['subFilterFirm']) || isset($_SESSION['dataFilterFirm'])) {
+            if (isset($_POST['filterFirm'])) {
+                $data = $_POST['filterFirm'];
+                $_SESSION['dataFilterFirm'] = $data;
+            } else {
+                $data = $_SESSION['dataFilterFirm'];
+            }
+
+            $arr = Companies::getCompaniesFilterWithPage($page, $data);
+            $count = $arr['count'];
+            unset($arr['count']);
+        } else {
+            $arr = Companies::getCompniesWithPage($page);
+            $count = Companies::countCompamies()[0]['count'];
+        }
+        $filterCompany = Companies::getParamsFilter($data);
+        $pagination = new Pagination($count, $page, Config::COUNT_NOTES_ON_PAGE, 'p-');
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
         require_once ROOT . '/views/admin/index.php';
+        return true;
+    }
+
+    public function actionUsersPage($page = 1)
+    {
+        $data = [];
+        if (isset($_SESSION['dataFilterFirms'])) {
+            unset($_SESSION['dataFilterFirms']);
+        }
+        if (isset($_POST['unsetSub'])) {
+            unset($_SESSION['dataFilterUser']);
+        }
+        if (isset($_POST['subFilter']) || isset($_SESSION['dataFilterUser'])) {
+            if (isset($_POST['subFilter'])) {
+                $data = $_POST['filter'];
+                $_SESSION['dataFilterUser'] = $data;
+            } else {
+                $data = $_SESSION['dataFilterUser'];
+            }
+            $arr = Users::getFilterUserWithPage($page, $data);
+            $count = $arr['count'];
+            unset($arr['count']);
+        } else {
+            $arr = Users::getAllUsersAndFirmsWithPage($page);
+            $count = Users::countUsers()[0]['count'];
+        }
+        if (isset($_SESSION['dataFilterUser'])) {
+            $data = $_SESSION['dataFilterUser'];
+        }
+//        var_dump($arr);
+        $arrCompanyName = Companies::getFirmsName();
+        $pagination = new Pagination($count, $page, Config::COUNT_NOTES_ON_PAGE, 'p-');
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
+        require_once ROOT . '/views/admin/userPage.php';
         return true;
     }
 
     public function actionAddCompany()
     {
-        if(isset($_POST['subAddCompany'])){
+        if (isset($_POST['subAddCompany'])) {
             $data = $_POST;
             unset($data['subAddCompany']);
             Admin::addNewCompany($data);
         }
         $src = Config::SRC_IMG_COMPANIES;
         $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
-        require_once ROOT  . '/views/admin/addCompany.php';
+        require_once ROOT . '/views/admin/addCompany.php';
         return true;
     }
 
     public function actionAddWorker()
     {
-        if(isset($_POST['subAddWorker'])){
-           $data = $_POST;
-           unset($data['subAddWoker']);
-           Admin::addNewWorker($data);
+        if (isset($_POST['subAddWorker'])) {
+            $data = $_POST;
+            unset($data['subAddWoker']);
+            Admin::addNewWorker($data);
         }
         $companies = Companies::getFirmsName();
         $src = Config::SRC_IMG_WORKERS;
@@ -37,6 +96,26 @@ class AdminController
         return true;
     }
 
+    public function actionDelCompany($id = false)
+    {
+        $arr = [
+            'firms_users',
+            'firms'
+        ];
+        Admin::Delete($id, $arr);
+        header("Location: /admin/");
+    }
 
+    public function testDataUpdate($data, $component)
+    {
+        //GET
+        //POST
+        //FILES
 
+        //$data = данные от пользователя
+
+        // get component $companyManager
+        // $companyManager->update($data)
+
+    }
 }

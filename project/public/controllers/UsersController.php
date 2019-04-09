@@ -10,15 +10,17 @@ class UsersController
 {
     public function actionIndex($page = 1)
     {
+        $page = $page == 0 ? 1 : $page;
         if(isset($_SESSION['dataFilterFirms'])){
             unset($_SESSION['dataFilterFirms']);
         }
-        if(isset($_POST['unsetSub'])){
+        if(isset($_GET['unsetSub'])){
+            unset($_GET['filter']);
             unset($_SESSION['dataFilterUser']);
         }
-        if(isset($_POST['subFilter']) || isset($_SESSION['dataFilterUser'])){
-            if(isset($_POST['subFilter'])){
-                $data = $_POST['filter'];
+        if(isset($_GET['subFilter']) || isset($_SESSION['dataFilterUser'])){
+            if(isset($_GET['subFilter'])){
+                $data = $_GET['filter'];
                 $_SESSION['dataFilterUser'] = $data;
             }else{
                 $data = $_SESSION['dataFilterUser'];
@@ -28,7 +30,7 @@ class UsersController
             unset($arr['count']);
         }else{
             $arr = Users::getAllUsersAndFirmsWithPage($page);
-            $count = Users::countUsers()['count'];
+            $count = Users::countUsers()[0]['count'];
        }
         if(isset($_SESSION['dataFilterUser'])){
             $data = $_SESSION['dataFilterUser'];

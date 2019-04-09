@@ -29,6 +29,7 @@ form{
   align-items: center;
 }
 
+
 form  input{
   margin-top:5px;
 }
@@ -67,6 +68,12 @@ form  input{
   width: 150px;
 }
 
+.header{
+  background-color: #14006b;
+  color:white;
+  font-family: arial;
+}
+
 .adress, .logo{
   display: flex;
   justify-content: center;
@@ -77,6 +84,21 @@ form  input{
 .login{
   box-sizing: border-box;
   padding:5px !important;
+}
+
+.loginInput{
+  width: 100%;
+  background-color: white;
+  border: 0px;
+  padding: 5px;
+}
+
+.loginInput[type=text]{;
+  padding: 2px;
+}
+
+.loginInput[name=loginIn]{
+  padding: 5px;
 }
 
 .login h2, .subscribe h2{
@@ -95,11 +117,27 @@ form  input{
   margin-top:5px;
 }
 
+
 .nav{
-  margin:10px 0 10px 0;
+  /*margin:10px 0 10px 0;*/
+  background-color: #0C0046;
+  padding:5px 5px 5px 0px;
+}
+
+.nav div[class*=col-]{
+  background-color: #0C0046;
+  color: white;
+  padding-left: 10px;
+  font-size: 25px;
+  font-family: arial;
+}
+
+.nav div[class*=col-]:hover{
+  background-color: #14006b;
 }
 
 .rowContent{
+  color:black;
   display: flex;
   justify-content: center;
   margin-top:10px;
@@ -169,7 +207,7 @@ form  input{
 }
 
 .active{
-  background-color: black;
+  background-color: #14006b;
   color:white;
 }
 
@@ -200,7 +238,15 @@ form  input{
   margin: 0 auto;
 }
 
+.imgUser{
+  width:100px;
+}
+
 /*Админка*/
 .AdminBlockContent{
   margin:32px auto 32px auto;
+}
+
+.other{
+  color:white;
 }

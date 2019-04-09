@@ -1,8 +1,7 @@
 <?php
-
-
 class Admin
 {
+
     public static function addNewCompany($data)
     {
         $arr = [
@@ -15,7 +14,7 @@ class Admin
         ];
         $arrWithData = DbQuery::prepareDataForQuery($arr);
         $sql = "INSERT INTO `firms` ({$arrWithData['cols']})  VALUES({$arrWithData['placeholders']})";
-        DbQuery::otherOuery($sql, true, false,  $arrWithData['arrForExec'], false);
+        DbQuery::otherOuery($sql, false, [],  $arrWithData['arrForExec'], false);
     }
 
     public static function addNewWorker($data)
@@ -38,8 +37,22 @@ class Admin
             INSERT INTO `firms_users` (`id_user`, `id_firm`) VALUES( (SELECT MAX(`id_user`) FROM `users`), {$data['id_firm']});
             COMMIT;
             ";
-        DbQuery::otherOuery($sql, true, false, $arrWithData['arrForExec'], false);
+        DbQuery::otherOuery($sql, true, [], $arrWithData['arrForExec'], false);
 
+    }
+
+    public static function Delete($id, $table = [])
+    {
+        $data = [
+            ':id_firm' => (int )$id
+        ];
+        $sql = "
+            START transaction;
+                DELETE FROM " . array_shift($table) .  " WHERE `id_firm` = :id_firm;
+                DELETE FROM " . array_shift($table) . " WHERE `id_firm` = :id_firm;
+            COMMIT; 
+        ";
+        DbQuery::otherOuery($sql, false, [], $data);
     }
 
 }

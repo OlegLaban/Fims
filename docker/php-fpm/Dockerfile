@@ -21,8 +21,11 @@ RUN apt-get update \
     && echo "xdebug.idekey=PHP_STORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_host=172.18.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-CMD ["php-fpm", "-F"]
+RUN useradd -rm -d /home/docker_user -s /bin/bash -g root -G sudo -u 1000 docker_user
+USER docker_user
+WORKDIR /var/www/html
 
-WORKDIR /var/www/project
+
+CMD ["php-fpm", "-F"]
 
 EXPOSE 9000

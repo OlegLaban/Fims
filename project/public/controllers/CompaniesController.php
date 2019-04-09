@@ -10,35 +10,36 @@ class CompaniesController
 {
     public function actionIndex($page = 1)
     {
-        if(isset($_SESSION['unsetSub'])){
+        $page = $page == 0 ? 1 : $page;
+        $data = [];
+        if (isset($_SESSION['unsetSub'])) {
             unset($_SESSION['unsetSub']);
         }
-        if(isset($_POST['resetFilterFirm'])){
+        if (isset($_GET['resetFilterFirm'])) {
             unset($_SESSION['dataFilterFirm']);
         }
-        if(isset($_POST['subFilterFirm']) || isset($_SESSION['dataFilterFirm'])){
-            if(isset($_POST['filterFirm'])){
-                $data = $_POST['filterFirm'];
+        if (isset($_GET['subFilterFirm']) || isset($_SESSION['dataFilterFirm'])) {
+            if (isset($_GET['filterFirm'])) {
+                $data = $_GET['filterFirm'];
                 $_SESSION['dataFilterFirm'] = $data;
-            }else{
+            } else {
                 $data = $_SESSION['dataFilterFirm'];
             }
 
-            $arr  = Companies::getCompaniesFilterWithPage($page, $data);
+            $arr = Companies::getCompaniesFilterWithPage($page, $data);
             $count = $arr['count'];
             unset($arr['count']);
-        }else{
+        } else {
             $arr = Companies::getCompniesWithPage($page);
-            $count = Companies::countCompamies()['count'];
+            $count = Companies::countCompamies()[0]['count'];
         }
 
-        $literaOt = isset($data['literaOt']) ?  $data['literaOt'] : "";
-        $literaDo = isset($data['literaDo']) ?  $data['literaDo'] : "";
-        $chisloOt =  isset($data['chisloOt'])  ?  $data['chisloOt'] : 0;
-        $chisloDo =  isset($data['chisloDo'])  ?  $data['chisloDo'] : 0;
+        $filterCompany = Companies::getParamsFilter($data);
+
+
         $pagination = new Pagination($count, $page, Config::COUNT_NOTES_ON_PAGE, 'p-');
         $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
-        require_once ROOT  . '/views/companies/index.php';
+        require_once ROOT . '/views/companies/index.php';
         return true;
     }
 }

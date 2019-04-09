@@ -31,13 +31,19 @@ class Companies
         $count = intval($count);
         $page = intval($page);
         $offset = ($page - 1) * $count;
-        return  DbQuery::getAllDataWithPage('firms',  $offset, $count);
+        $sql = "SELECT firms.id_firm, firms.firm_name, firms.logo, firms.description, T.col_workers FROM `firms` 
+                LEFT JOIN ((SELECT firms.id_firm, COUNT(firms.id_firm) AS `col_workers` FROM `firms` INNER JOIN 
+                firms_users ON (firms_users.id_firm = firms.id_firm) 
+                GROUP BY firms.firm_name) AS `T`) ON (T.id_firm = firms.id_firm)
+                LIMIT {$count} OFFSET {$offset} ";
+        return DbQuery::otherOuery($sql, true);
     }
 
     public static function getCompaniesFilterWithPage($page, $data, $count = Config::COUNT_NOTES_ON_PAGE)
     {
         $count = intval($count);
         $page = intval($page);
+        $page = $page == 0 ? 1 : $page;
         $offset = ($page - 1) * $count;
         $sql = self::prepareStrWithFilter($data);
         $countAll = count(DbQuery::otherOuery($sql, true));
@@ -50,7 +56,12 @@ class Companies
 
     public static function prepareStrWithFilter($data)
     {
-        $sql = "SELECT DISTINCT firms.id_firm, firms.firm_name, firms.description, firms.logo FROM `firms` "
+        $sql = "SELECT DISTINCT firms.id_firm, firms.firm_name, firms.description, firms.logo, T.col_workers, "
+                . " (SELECT COUNT(firms.id_firm) AS `count` FROM `firms` INNER JOIN "
+                . " firms_users ON (firms_users.id_firm = firms.id_firm))  AS  `count_workers` FROM `firms` "
+                . " LEFT JOIN ((SELECT firms.id_firm, COUNT(firms.id_firm) AS `col_workers` FROM `firms` INNER JOIN"
+                . " firms_users ON (firms_users.id_firm = firms.id_firm) "
+                . " GROUP BY firms.firm_name) AS `T`) ON (T.id_firm = firms.id_firm) "
                 . " INNER JOIN firms_users ON (firms_users.id_firm = firms.id_firm) "
                 . " WHERE firms.id_firm  IN (SELECT firms.id_firm FROM `firms` INNER JOIN "
                 . " firms_users ON (firms_users.id_firm = firms.id_firm)"
@@ -132,9 +143,19 @@ class Companies
         return $sql;
     }
 
+    public static function getParamsFilter($data)
+    {
+        $result = [];
+        $result['literaOt'] = isset($data['literaOt']) ?  $data['literaOt'] : "";
+        $result['literaDo'] = isset($data['literaDo']) ?  $data['literaDo'] : "";
+        $result['chisloOt'] =  isset($data['chisloOt'])  ?  $data['chisloOt'] : 0;
+        $result['chisloDo'] =  isset($data['chisloDo'])  ?  $data['chisloDo'] : 0;
+        return $result;
+    }
 
     public static function countCompamies()
     {
-        return DbQuery::getOtherData("COUNT(`id_firm`) AS `count`", "firms");
+        $sql = "SELECT COUNT(`id_firm`) AS `count` FROM `firms`";
+        return DbQuery::otherOuery($sql);
     }
 }

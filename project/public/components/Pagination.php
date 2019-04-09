@@ -125,10 +125,17 @@ class Pagination
             $text = $page;
 
         $currentURI = rtrim($_SERVER['REQUEST_URI'], '/') . '/';
+        $url = explode("?", $currentURI);
+        $currentURI = $url[0];
         $currentURI = preg_replace('~/p-[0-9]+~', '', $currentURI);
+        if(!isset($url[1])){
+            $url[1] = '';
+        }else{
+            $url[1] = "/?" . $url[1];
+        }
         # Формируем HTML код ссылки и возвращаем
         return
-                '<li><a href="' . $currentURI . $this->index . $page . '">' . $text . '</a></li>';
+                '<li><a href="' . $currentURI . $this->index . $page . $url[1] . '">' . $text . '</a></li>';
     }
 
     /**

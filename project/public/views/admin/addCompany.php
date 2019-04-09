@@ -15,7 +15,7 @@
                <input type="text" name="description">
                <span class="textForm">Логотип:</span>
                <input type="file" id="logoCompany"  data-src="<?php echo $src; ?>">
-               <input type="hidden" id="logo" name="logo" value="">
+               <input type="hidden" id="logo" name="logo" value="site/AddImgC">
                <img src=""  alt="logoCompany" id="imgFile">
                <input type="submit" name="subAddCompany">
            </form>

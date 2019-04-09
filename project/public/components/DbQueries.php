@@ -5,6 +5,7 @@ class DbQueries
   public static function insertQery($data, $tableName)
   {
     $db = Db::getConnection();
+
     $params = implode(", ",array_keys($data));
     $values = array_values($data);
     $sql = "INSERT INTO {$tableName} VALUES(" .  $params . ")";
@@ -14,7 +15,9 @@ class DbQueries
 
   public static function selectQuery($data, $tableName)
   {
+
     $db = Db::getConnection();
+
     if($data === '*'){
       $sql = "SELECT * FROM {$tableName}";
       $result = $db->query($sql);

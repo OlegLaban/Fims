@@ -52,8 +52,10 @@ window.onload = function () {
                 }
 
             }
+            var url = "/" + $("#logo").val() + "/";
+            console.log(url);
             $.ajax({
-                url: "/site/addImgW/",
+                url: "/site/AddImgW/",
                 type: "POST",
                 data: formData,
                 dataType: "html",

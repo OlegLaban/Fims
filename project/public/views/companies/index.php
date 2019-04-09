@@ -3,23 +3,23 @@
     <div class="col-3">
         <div class="filter">
             <h2 class="opis">Фильтр:</h2>
-            <form action="/companies/" method="POST">
+            <form action="/companies/" method="GET">
                 <p>Название по алфавиту:</p>
                 <p>От: <input type="text" name="filterFirm[literaOt]" pattern="[A-Za-zА-Яа-яЁё]"
-                              value="<?php echo $literaOt; ?>">
+                              value="<?php echo $filterCompany['literaOt']; ?>">
                 </p>
                 <p>До: <input type="text" name="filterFirm[literaDo]" pattern="[A-Za-zА-Яа-яЁё]"
-                              value="<?php echo $literaDo; ?>">
+                              value="<?php echo $filterCompany['literaDo']; ?>">
                 </p>
                 <p class="opis">Колличество сотрудников</p>
                 <div class="count">
                     <p>От: <input type="range" min="0" max="100" id="chisloOt" name="filterFirm[chisloOt]" pattern="[A-Za-zА-Яа-яЁё]"
-                                  value="<?php echo $chisloOt;?>">
-                        <span id="outputOt"><?php echo $chisloOt;?></span>/100
+                                  value="<?php echo $filterCompany['chisloOt'];?>">
+                        <span id="outputOt"><?php echo $filterCompany['chisloOt'];?></span>/100
                     </p>
                     <p>До: <input type="range" min="0" max="100" id="chisloDo" name="filterFirm[chisloDo]" pattern="[A-Za-zА-Яа-яЁё]"
-                                  value="<?php echo $chisloDo;?>">
-                        <span id="outputDo"><?php echo $chisloDo;?></span>/100
+                                  value="<?php echo $filterCompany['chisloDo'];?>">
+                        <span id="outputDo"><?php echo $filterCompany['chisloDo'];?></span>/100
                     </p>
                 </div>
                 <input type="submit" name="subFilterFirm" value="Отправить">
