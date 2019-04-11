@@ -41,4 +41,12 @@ class UsersController
         require_once ROOT . '/views/user/index.php';
         return true;
     }
+
+    public function actionView($id)
+    {
+
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
+        require_once ROOT . '/views/user/viewUser.php';
+        return true;
+    }
 }

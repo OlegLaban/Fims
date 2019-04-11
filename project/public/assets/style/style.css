@@ -250,3 +250,29 @@ form  input{
 .other{
   color:white;
 }
+
+/*user views*/
+
+.description{
+  margin:0 auto;
+  margin-top:50px;
+  max-width: 620px;
+}
+
+.static{
+  font-size: 20px;
+}
+
+.table .dynamic, .table .static{
+  border-left:1px solid #14006b;
+}
+
+.table .dynamic:last-child, .table .static:last-child{
+  border-right: 1px solid #14006b;
+}
+
+.static, .dynamic{
+  margin: 0 auto;
+  border-bottom: 1px solid #14006b;
+}
+

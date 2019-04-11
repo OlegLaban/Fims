@@ -1,4 +1,4 @@
-<?php require_once ROOT . '/include/header.php';?>
+<?php require_once ROOT . '/views/include/header.php';?>
     <div class="row content">
     <div class="col-3">
         <div class="filter">
@@ -49,4 +49,4 @@
             ?>
         </div>
     </div>
-<?php require_once ROOT . '/include/footer.php';?>
+<?php require_once ROOT . '/views/include/footer.php';?>

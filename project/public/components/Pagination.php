@@ -123,14 +123,16 @@ class Pagination
         if (!$text)
         # Указываем, что текст - цифра страницы
             $text = $page;
-
+        //Формируем url в зависимости от того есть ли в запросе GET параметры
         $currentURI = rtrim($_SERVER['REQUEST_URI'], '/') . '/';
         $url = explode("?", $currentURI);
         $currentURI = $url[0];
         $currentURI = preg_replace('~/p-[0-9]+~', '', $currentURI);
         if(!isset($url[1])){
+            //Если в запросе нет get запроса то вместо параметров ставим пустую строку.
             $url[1] = '';
         }else{
+            //Если есть get запрос то добавляем вопросительный знак и сами параметры.
             $url[1] = "/?" . $url[1];
         }
         # Формируем HTML код ссылки и возвращаем
