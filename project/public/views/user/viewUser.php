@@ -5,7 +5,7 @@
 <div class="row content">
     <div class="col-3">
         <h2>Фото</h2>
-        <img src="/img/no_avatar.jpg" alt="avatar">
+        <img src="/assets//img/no_avatar.jpg" alt="avatar">
     </div>
     <div class="col-9 blockContent">
         <div class="description">

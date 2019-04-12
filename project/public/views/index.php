@@ -1,7 +1,7 @@
-<?php require_once ROOT . '/include/header.php';?>
+<?php require_once ROOT . '/views/include/header.php';?>
     <div class="row content">
     <div class="col-3">
-        <img src="../img/banner.png" alt="">
+        <img src="/assets/img/banner.png" alt="">
     </div>
     <div class="col-9 blockContent">
 
@@ -9,7 +9,7 @@
             <?php foreach ($arr as $item): ?>
                 <div class="col-4">
                     <div class="row">
-                        <img src="../img/<?php echo $item['logo']; ?>" alt="" class="logoCompany">
+                        <img src="/assets/img/<?php echo $item['logo']; ?>" alt="" class="logoCompany">
                         <h2><?php echo $item['firm_name']; ?></h2>
                     </div>
                     <p>
@@ -20,4 +20,4 @@
             <?php endforeach; ?>
         </div>
     </div>
-<?php require_once ROOT . '/include/footer.php';?>
+<?php require_once ROOT . '/views/include/footer.php';?>

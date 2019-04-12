@@ -33,7 +33,7 @@
             <?php foreach ($arr as $item): ?>
                 <div class="col-4">
                     <div class="row">
-                        <img src="../img/<?php echo $item['logo']; ?>" alt="" class="logoCompany">
+                        <img src="/assets/img/<?php echo $item['logo']; ?>" alt="" class="logoCompany">
                         <h2><?php echo $item['firm_name']; ?></h2>
                     </div>
                     <p>

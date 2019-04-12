@@ -1,0 +1,264 @@
+*{
+     margin:0;
+     padding:0;
+}
+
+.row{
+     margin:0;
+}
+
+a, a:hover, a:active{
+     color:inherit;
+     text-decoration: none;
+}
+
+input[type=button], button{
+     cursor: pointer;
+}
+
+div[class*=col-]{
+     padding:0;
+}
+
+/* Filter */
+
+form{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     input{
+          margin-top:5px;
+     }
+}
+
+.alphabet{
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: normal;
+     input[name=literaOt], input[name=literaDo]{
+          margin-right: 5px;
+     }
+     form input[type=text]{
+          width:100px;
+     }
+     
+}
+
+.date{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     input{
+          width: 150px;
+     }
+}
+
+.radioCompanyFilter{
+     overflow: auto;
+     max-height: 100px;
+     width: 150px;
+}
+
+.header{
+     background-color: #14006b;
+     color:white;
+     font-family: arial;
+}
+
+.adress, .logo{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+
+.login{
+     box-sizing: border-box;
+     padding:5px !important;
+}
+
+.loginInput{
+     width: 100%;
+     background-color: white;
+     border: 0px;
+     padding: 5px;
+}
+
+.loginInput[type=text]{;
+     padding: 2px;
+}
+
+.loginInput[name=loginIn]{
+     padding: 5px;
+}
+
+.login h2, .subscribe h2{
+     text-align: center;
+}
+
+
+.login form, .subscribe form{
+     display: flex;
+     flex-direction: column;
+     width: 50%;
+     margin: 0 auto;
+}
+
+.login form input, .subscribe form input{
+     margin-top:5px;
+}
+
+.nav{
+     background-color: #0C0046;
+     padding:5px 5px 5px 0px;
+     div[class*=col-]{
+          background-color: #0C0046;
+          color: white;
+          padding-left: 10px;
+          font-size: 25px;
+          font-family: arial;
+          &:hover{
+               background-color: #14006b;
+          }
+     }
+}
+
+.rowContent{
+     color:black;
+     display: flex;
+     justify-content: center;
+     margin-top:10px;
+     &:last-child{
+          margin-bottom: 10px;
+     }
+     div[class*=col-]{
+          &:first-child{
+               margin-right: 50px;
+               margin-bottom: 50px;
+          }
+          p{
+               margin-top: 15px;
+          }
+          .row{
+               display: flex;
+               align-items: center;
+               h2{
+                    margin-left: 25px;
+               }
+          }
+     
+     }
+    div[class*=table]{
+          a{
+              cursor: pointer;
+          } 
+          &:first-child{
+               margin-right: 0px;
+               margin-bottom: 0px;
+          }    
+    } 
+}
+
+.tableRow{
+     margin-right: 50px;
+}
+
+.logoCompany{
+     max-width: 150px;
+     max-height: 75px;
+}
+
+.pagination{
+     margin:10px 0 10px 0;
+     display: flex;
+     justify-content: center;
+     ul{
+          list-style: none;
+          li{
+               border: 1px solid black;
+               margin-right: 10px;
+               a{
+                    display: block;
+                    padding:7px;
+               }
+          }
+     }
+     
+}
+
+.active{
+     background-color: #14006b;
+     color:white;
+}
+
+.tableLastAddUsers {
+     div{
+          margin:2px 0 2px 0;
+          box-sizing: border-box;
+          padding-left:2px;
+          border:1px solid black;
+     }
+}
+
+#outputOt, #chisloOt{
+     display: inline-block;
+}
+
+#outputDo, #chisloDo{
+     display: inline-block;
+}
+
+
+#outputOt, #outputDo{
+     min-width: 50px;
+     text-align: right;
+}
+
+.copy { 
+     p{
+          margin: 0 auto;
+     }
+}
+
+.imgUser{
+     width:100px;
+}
+/*Admin panel*/
+.AdminBlockContent{
+     margin:32px auto 32px auto;
+}
+
+.other{
+     color:white;
+}
+
+.description{
+     margin:0 auto;
+     margin-top:50px;
+     max-width: 620px;
+}
+
+.static{
+     font-size: 20px;
+}
+
+.table{
+     .dynamic{
+          border-left:1px solid #14006b;
+          &:last-child{
+               border-right: 1px solid #14006b;
+          }
+     }
+     .static{
+          border-left:1px solid #14006b;
+          :last-child{
+               border-right: 1px solid #14006b;
+          }
+     }
+} 
+
+.static, .dynamic{
+     margin: 0 auto;
+     border-bottom: 1px solid #14006b;
+}
