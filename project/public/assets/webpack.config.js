@@ -5,9 +5,9 @@ let conf = {
         app: './src/index.js'
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
         filename: './js/main.js',
-        publicPath: 'dist/js/'
+        path: path.resolve(__dirname, './dist'),
+        publicPath: '/dist'
     },
     module: {
         rules: [{

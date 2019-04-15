@@ -1,9 +1,11 @@
 import './css/bootstrap-grid.css';
 import './css/main.css';
 import './scss/main.scss';
-import $ from "jquery";
+import jQuery from "jquery";
+window.$ = window.jQuery = jQuery;
 
 
+window.onload = function (){
     $('#chisloOt, #chisloDo').on("change mousemove", function() {
         $(this).next().html($(this).val());
     });
@@ -45,6 +47,8 @@ import $ from "jquery";
 
     });
 
+
+
     /*$('#logoWorker').on("change", function(){
 
          var $i = $('#logoWorker'), input = $i[0];
@@ -80,6 +84,8 @@ import $ from "jquery";
          }
 
      });*/
+}
+
 
 
 

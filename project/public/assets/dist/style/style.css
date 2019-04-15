@@ -4015,10 +4015,18 @@ div[class*=col-] {
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #0C0046; }
+  align-items: center; }
   form input {
     margin-top: 5px; }
+
+.filterForm {
+  background-color: #14006b;
+  color: white;
+  width: 70%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 6px;
+  border-radius: 10px; }
 
 .alphabet {
   display: flex;
