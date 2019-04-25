@@ -6,7 +6,7 @@ return array(
   'users' => 'users/index',
 
 
-
+  'companies/view/([0-9]+)' => 'companies/viewCompany',
   'companies/p-([0-9]+)' => 'companies/index/$1',
   'companies' => 'companies/index',
 
@@ -15,6 +15,7 @@ return array(
   'admin/p-([0-9]+)' => 'admin/index/$1',
   'admin/delCompany/([0-9]+)' => 'admin/delCompany/$1',
   'admin/delUser/([0-9]+)' => 'admin/delUser/$1',
+  'admin/edituser/([0-9]+)' => 'admin/editUser/$1',
   'admin/user/p-([0-9]+)' => 'admin/usersPage/$1',
   'admin/user' => 'admin/usersPage',
   'admin' => 'admin/index',
