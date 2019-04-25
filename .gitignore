@@ -1,4 +1,8 @@
 .idea/
+databases
 project/public/error_l
-project/public/img
+project/public/assets/img
 project/public/assets/node_modules
+project/public/errors
+project/public/upload
+project/public/errors

@@ -10,6 +10,7 @@ return array(
   'companies/p-([0-9]+)' => 'companies/index/$1',
   'companies' => 'companies/index',
 
+  'admin/addFromXML' => 'admin/AddFromXMLFile',
   'admin/addcompany' => 'admin/addCompany',
   'admin/addworker' => 'admin/addWorker',
   'admin/p-([0-9]+)' => 'admin/index/$1',

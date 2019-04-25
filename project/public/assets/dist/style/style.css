@@ -4011,6 +4011,9 @@ input[type=button], button {
 div[class*=col-] {
   padding: 0; }
 
+.namePage {
+  text-align: center; }
+
 /* Filter */
 form {
   display: flex;
@@ -4027,6 +4030,15 @@ form {
   box-sizing: border-box;
   padding: 6px;
   border-radius: 10px; }
+  .filterForm input {
+    width: 100%;
+    background-color: white;
+    border: 0px;
+    padding: 5px; }
+    .filterForm input[type=submit] {
+      cursor: pointer; }
+    .filterForm input[type=checkbox] {
+      width: auto; }
 
 .alphabet {
   display: flex;
@@ -4072,7 +4084,7 @@ form {
   padding: 5px; }
 
 .loginInput[type=text] {
-  padding: 2px; }
+  padding: 4px; }
 
 .loginInput[name=loginIn] {
   padding: 5px; }
@@ -4100,6 +4112,9 @@ form {
     font-family: arial; }
     .nav div[class*=col-]:hover {
       background-color: #14006b; }
+    .nav div[class*=col-] a {
+      display: block;
+      width: 100%; }
 
 .rowContent {
   color: black;
@@ -4173,6 +4188,14 @@ form {
 /*Admin panel*/
 .AdminBlockContent {
   margin: 32px auto 32px auto; }
+
+.addUser {
+  width: 30%;
+  border: 1px solid #14006b;
+  background-color: white;
+  color: black; }
+  .addUser input {
+    border: 1px solid #14006b; }
 
 .other {
   color: white; }

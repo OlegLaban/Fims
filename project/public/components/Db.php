@@ -23,7 +23,7 @@ Class Db
     public static function getConnection()
     {
         if (!static::$db instanceof PDO) {
-            $paramsPath = ROOT . '/config/db_params.php';
+            $paramsPath = ROOT . '/config/DbParams.php';
             $params = include($paramsPath);
             $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
             static::$db = new PDO($dsn, $params['user'], $params['password']);

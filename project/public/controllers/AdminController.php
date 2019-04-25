@@ -106,6 +106,17 @@ class AdminController
         header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 
+    public function actionEditUser($id)
+    {
+        $arrDataWoker = Users::getUserById($id);
+        $arrDataWoker = reset($arrDataWoker);
+        $src = Config::SRC_IMG_WORKERS;
+        $companies = Companies::getFirmsName();
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
+        require_once ROOT . '/views/admin/editUser.php';
+        return true;
+    }
+
     public function actionDelUser($id = false)
     {
         $arr = [
@@ -116,18 +127,35 @@ class AdminController
         ];
         Admin::Delete($id, $arr);
         header("Location: " . $_SERVER['HTTP_REFERER']);
+        return true;
     }
 
-    public function testDataUpdate($data, $component)
+    public function actionAddFromXMLFile()
     {
-        //GET
-        //POST
-        //FILES
+        if(isset($_POST['subAddXml'])){
+            $file = Admin::UploadFile('data.xml');
+            $arrValuesWorker = [
+                'last_name',
+                'first_name',
+                'father_name',
+                'birthd_day',
+                'inn',
+                'cnils',
+                'data_start_job'
 
-        //$data = данные от пользователя
+            ];
+            $arrValuesCompany = [
+                'firm_name',
+                'ogrn',
+                'oktmo'
+            ];
+            Admin::parserXmlFile($file,  $arrValuesWorker, $arrValuesCompany);
 
-        // get component $companyManager
-        // $companyManager->update($data)
-
+        }
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
+        require_once ROOT . '/views/admin/addFromXML.php';
+        return true;
     }
+
+
 }

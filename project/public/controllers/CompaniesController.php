@@ -42,4 +42,11 @@ class CompaniesController
         require_once ROOT . '/views/companies/index.php';
         return true;
     }
+
+    public function actionViewCompany()
+    {
+        $lastUsersArr = Users::getLastAddUsers(Config::LAST_ADD_USERS);
+        require_once ROOT . '/views/companies/viewCompany.php';
+        return true;
+    }
 }

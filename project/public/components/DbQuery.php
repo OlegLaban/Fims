@@ -20,7 +20,7 @@ class DbQuery
             //Проверяем была ли передана перменная и является ли она массивом.
             if($where != null && is_array($where)){
                 // В данную переменную мы помещаем подготовленные функцией prepareStrQuery массив placeholders для sql запроса.
-                $placeholders = trim(self::prepareStrQuery(array_keys($where),flase, true));
+                $placeholders = trim(self::prepareStrQuery(array_keys($where),false, true));
                 // В эту переменную мы кладем результируюзий sql запрос с placeholders.
                 $resultWhereStr = self::preStrQueForWhereOrIns(array_keys($where), $placeholders, true);
                 //В данную переменную мы кладем массив типа {":placeholders" => value} который мы передадим функции execute.
@@ -46,7 +46,7 @@ class DbQuery
     {
         $db = Db::getConnection();
         if($where != null){
-            $result = self::perepareStrAllDataWithWhere($db, $where);
+            $result = self::perepareStrAllDataWithWhere($db, $table, $where);
         }else{
             //В случае если переменная "where" не являтся массивом то выполняется запрос без условий.
             $result = $db->query("SELECT * FROM " . $table);

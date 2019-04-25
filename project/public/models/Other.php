@@ -33,6 +33,12 @@ class Other
         return date("d.M.Y",   $unixTime);
     }
 
+    public static function getData($timeStamp)
+    {
+        $timeStamp = (int) $timeStamp;
+        return gmdate("Y-m-d", $timeStamp);
+    }
+
     public static function toUnixTime($date)
     {
         $a = date_parse_from_format('Y-m-d', $date);

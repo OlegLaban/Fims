@@ -3,7 +3,7 @@
     <div class="col-3">
         <div class="filter">
             <h2 class="opis">Фильтр:</h2>
-            <form action="/users/" method="get">
+            <form action="/users/" method="get" class="filterForm">
                 <p>Фамилии по алфавиту:</p>
                     <p>От: <input type="text" name="filter[literaOt]" pattern="[A-Za-zА-Яа-яЁё]"
                                   value="<?php if(isset($data['literaOt'])){ echo $data['literaOt']; } ?>">

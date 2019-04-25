@@ -2,6 +2,17 @@
 
 class Users
 {
+    public static function getUserById($id)
+    {
+        $id = (int) $id;
+        $sql = "SELECT users.id_user, users.last_name, users.birthd_day, users.cnils, users.father_name, users.first_name,
+                users.inn, users.photo, users.data_start_job, firms_users.id_firm
+                FROM `users` INNER JOIN `firms_users`
+                ON (users.id_user = firms_users.id_user) 
+                WHERE users.id_user = {$id}";
+        return DbQuery::otherOuery($sql);
+    }
+
     public static function getAllUsersAndFirmsWithPage($page, $count = Config::COUNT_NOTES_ON_PAGE)
     {
         $count = intval($count);

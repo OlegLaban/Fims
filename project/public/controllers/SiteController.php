@@ -16,8 +16,8 @@ class SiteController
   {
       $data = $_FILES;
       $name = basename($data[0]["name"]);
-      $src = ROOT  . "/img/logoCompanies/$name";
-      echo "/img/logoCompanies/$name";
+      $src = ROOT  . "/assets/img/logoCompanies/$name";
+      echo "/assets/img/logoCompanies/$name";
       move_uploaded_file($data[0]['tmp_name'], $src);
       return true;
   }
@@ -25,9 +25,9 @@ class SiteController
     public function actionAddImgW()
     {
         $data = $_FILES;
-        $name = basename($data[0]["name"]);
-        $src = ROOT  . "/img/logoWorker/$name";
-        echo "/img/logoWorker/$name";
+        $name = $data[0]["name"];
+        $src = ROOT . "/assets/img/logoWorker/$name";
+        echo "/assets/img/logoWorker/$name";
         move_uploaded_file($data[0]['tmp_name'], $src);
         return true;
     }

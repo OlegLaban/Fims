@@ -1,10 +1,10 @@
 <?php require_once ROOT . '/views/include/header.php'; ?>
-    <h2>Admin/Companies</h2>
+    <h2 class="namePage">Admin/Companies</h2>
     <div class="row content">
     <div class="col-3">
         <div class="filter">
             <h2 class="opis">Фильтр:</h2>
-            <form action="/admin/" method="POST">
+            <form action="/admin/" method="POST" class="filterForm">
                 <p>Название по алфавиту:</p>
                 <p>От: <input type="text" name="filterFirm[literaOt]" pattern="[A-Za-zА-Яа-яЁё]"
                               value="<?php echo $filterCompany['literaOt']; ?>">

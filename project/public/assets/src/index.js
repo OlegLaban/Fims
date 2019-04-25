@@ -47,43 +47,27 @@ window.onload = function (){
 
     });
 
+    $("#resetData").on('click', function(){
+        var childrenForm = [], arrElements = ['input:not(.button)', 'select'];
+        for(var i = 0; i < arrElements.length; i++){
+            childrenForm[i] = $("#formEditUser").children(arrElements[i]);
+        }
+        console.log(childrenForm.length);
+        console.log(childrenForm);
+        for (var q = 0; q <= childrenForm.length; q++){
+
+            console.log("q = " + q);
+            for (var j = 0; j < childrenForm[q].length; j++){
+                if(childrenForm[j].prop("localName") === 'select'){
+                    $(childrenForm[j].children()[0]).attr('selected', 'select');
+                    continue;
+                }
+                childrenForm[j].val("");
+            }
+        }
+    });
 
 
-    /*$('#logoWorker').on("change", function(){
-
-         var $i = $('#logoWorker'), input = $i[0];
-         if(input.files){
-             var file = input.files, src, formData = new FormData();
-             var src = $('#logoWorker').attr('data-src');
-             if(file.length != 0) {
-                 console.log(file)
-                 for(var files in file){
-                     formData.append(files, file[files]);
-                 }
-
-             }
-             var url = "/" + $("#logo").val() + "/";
-             $.ajax({
-                 url: "/site/AddImgW/",
-                 type: "POST",
-                 data: formData,
-                 dataType: "html",
-                 cache: false,
-                 processData: false,
-                 contentType: false,
-                 success: function (data) {
-                     $('#debug').html(data);
-                     $('#logo').attr('value', data);
-                     $('#imgFile').attr('src', data);
-                 }
-             });
-
-
-
-
-         }
-
-     });*/
 }
 
 

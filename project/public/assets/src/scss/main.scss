@@ -1,3 +1,11 @@
+@mixin mybutton($color, $width)
+{
+     width: $width;
+     background-color: $color;
+     border: 0px;
+     padding: 5px;
+}
+
 *{
      margin:0;
      padding:0;
@@ -20,6 +28,10 @@ div[class*=col-]{
      padding:0;
 }
 
+.namePage{
+     text-align: center;
+}
+
 /* Filter */
 
 form{
@@ -39,6 +51,19 @@ form{
      box-sizing: border-box;
      padding: 6px;
      border-radius: 10px;
+     input {
+          width: 100%;
+          background-color: white;
+          border: 0px;
+          padding: 5px;
+          &[type=submit]{
+               cursor:pointer;
+          }
+          &[type=checkbox]{
+               width: auto;
+          }
+     }
+
 }
 
 .alphabet{
@@ -89,14 +114,11 @@ form{
 }
 
 .loginInput{
-     width: 100%;
-     background-color: white;
-     border: 0px;
-     padding: 5px;
+     @include mybutton(white, 100%);
 }
 
 .loginInput[type=text]{;
-     padding: 2px;
+     padding: 4px;
 }
 
 .loginInput[name=loginIn]{
@@ -130,6 +152,10 @@ form{
           font-family: arial;
           &:hover{
                background-color: #14006b;
+          }
+          a{
+               display: block;
+               width: 100%;
           }
      }
 }
@@ -239,6 +265,16 @@ form{
      margin:32px auto 32px auto;
 }
 
+.addUser{
+     width:30%;
+     border:1px solid #14006b;
+     background-color: white;
+     color:black;
+     input{
+          border:1px solid #14006b;
+     }
+}
+
 .other{
      color:white;
 }
@@ -272,3 +308,4 @@ form{
      margin: 0 auto;
      border-bottom: 1px solid #14006b;
 }
+

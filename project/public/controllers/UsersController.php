@@ -49,4 +49,5 @@ class UsersController
         require_once ROOT . '/views/user/viewUser.php';
         return true;
     }
+
 }
